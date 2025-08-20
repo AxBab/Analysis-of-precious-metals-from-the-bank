@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 config/*
 !config.gitkeep
-=======
-config/
->>>>>>> 30f6119192fb23509726ebb43a5113bc58854d11
 
 __pycache__/
 *.py[cod]
