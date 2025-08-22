@@ -36,16 +36,16 @@ def extract() -> dict:
 
     # Преобразование данных в вид (Купить : цена, Продать : цена)
     gold = metals[0].text.split()
-    gold = {"Продать" : "".join([gold[1], gold[2]]), "Купить" : "".join([gold[5], gold[6]])}
+    gold = {"Продать" : "".join([gold[1], gold[2]]).replace(",","."), "Купить" : "".join([gold[5], gold[6]]).replace(",",".")}
 
     silver = metals[2].text.split()
-    silver = {"Продать" : silver[1], "Купить" : silver[4]}
+    silver = {"Продать" : silver[1].replace(",","."), "Купить" : silver[4].replace(",",".")}
 
     platinum = metals[4].text.split()
-    platinum = {"Продать" : "".join([platinum[1], platinum[2]]), "Купить" : "".join([platinum[5], platinum[6]])}
+    platinum = {"Продать" : "".join([platinum[1], platinum[2]]).replace(",","."), "Купить" : "".join([platinum[5], platinum[6]]).replace(",",".")}
 
     palladium = metals[6].text.split()
-    palladium = {"Продать" : "".join([palladium[1], palladium[2]]), "Купить" : "".join([palladium[5], palladium[6]])}
+    palladium = {"Продать" : "".join([palladium[1], palladium[2]]).replace(",","."), "Купить" : "".join([palladium[5], palladium[6]]).replace(",",".")}
 
 
     metals_dict = {"gold": gold, "silver": silver, "platinum": platinum, "palladium": palladium}
