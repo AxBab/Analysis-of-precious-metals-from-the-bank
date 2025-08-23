@@ -2,7 +2,7 @@ import pymysql
 from config import DB_USER, DB_NAME, DB_PASSWORD
 
 # Подключение к БД
-def connect_to_DB():
+def connect_to_DB() -> pymysql.connections.Connection:
     try:
         connection = pymysql.connect(
             host='localhost',          # Хост базы данных
@@ -14,7 +14,6 @@ def connect_to_DB():
             cursorclass=pymysql.cursors.DictCursor  # Возвращать результаты как словари
         )
         print("Подключение к MySQL успешно установлено")
-
         return connection
     
     except Exception as ex:
@@ -29,14 +28,16 @@ def disconnect_from_DB(connection: pymysql.cursors.DictCursor, comment: str=None
 
 
 # Выполнение запросов для БД
-def execute_query(connection: pymysql.cursors.DictCursor, query: str):
+def execute_query(connection: pymysql.cursors.DictCursor, query: str, return_info: bool=False):
     try:
         with connection.cursor() as cursor:
             cursor.execute(query)
             connection.commit()
-            print("✅ Запрос выполнен успешно")
+            if return_info:
+                return cursor.fetchall()
+            print("✅ Запрос к БД выполнен успешно")
         
     except Exception as ex:
-        print(f"❌ Ошибка выполнения запроса: {ex}")
+        print(f"❌ Ошибка выполнения запроса к БД: {ex}")
 
         
